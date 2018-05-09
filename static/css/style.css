@@ -1,0 +1,13 @@
+body {
+    background-color: pink;
+    font-family: sans-serif;
+    }
+
+#content {
+    background-color: white;
+    text-align: center;
+    padding: 10px;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
