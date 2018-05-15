@@ -1,8 +1,3 @@
-body {
-    background-color: pink;
-    font-family: sans-serif;
-    }
-
 #content {
     background-color: white;
     text-align: center;
@@ -11,3 +6,106 @@ body {
     border-radius: 5px;
 }
 
+/* ======== COMMON ELEMENTS ======== */
+
+html {
+    background-color: #efefef;
+    font-family: 'Arial';
+}
+
+body {
+    width: 100vw;
+	margin: 0px;
+    padding: 0px;
+    padding-bottom: 150px;
+}
+
+p {
+    margin: 0px 0px;
+    /* text-align: center; */
+}
+
+a {
+    color: #ed3d51;
+    text-decoration: none;
+}
+
+hr {
+	margin: 15px auto;
+	border: 1px solid #cdcdcd;
+}
+
+
+/* ======== NAVIGATION BAR / LOGO ======== */
+
+nav {
+    background-color: #ed3d51;
+    width: 100%;
+    padding: 5px 0px;
+    position: fixed;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.5);
+}
+
+nav h1 {
+    font-size: 36px;
+    color: white;
+    text-align: left;
+    margin: 0px;
+    margin-top: 2px;
+    margin-left: 50px;
+    padding: 0px;
+	float: left;
+    font-weight: normal;
+    cursor: pointer;
+    display: inline-block;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+}
+
+
+.job_logo {
+    font-family: 'Merriweather';
+	font-size: 1em;
+}
+
+.board_logo {
+    font-family: 'Grand Hotel';
+    font-size: 1.4em;
+	margin-right: 2px;
+}
+
+nav ul {
+    float: left;
+    margin: 25px 50px 25px 0px;
+    display: inline;
+}
+
+nav ul a {
+    padding: 10px 15px;
+    margin-left: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+	text-transform: uppercase;
+}
+
+nav ul a:hover {
+    border-bottom: 2px solid white;
+}
+
+
+/* ======== MAIN ======== */
+
+#container {
+    width: 90%;
+    margin-top: 100px;
+    padding: 25px 5%;
+    float: left;
+}
+
+#container a:hover {
+	color: #ba3040;
+}
