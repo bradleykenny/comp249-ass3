@@ -4,7 +4,6 @@
 
     $(document).ready(function(){
         // $("#content").text("This text was placed here by the javascript in static/js/script.js")
-
 		$.getJSON('/positions', function(data) {
 			console.log(data);
 			for (var i = 0; i < 10; i++) {
@@ -15,11 +14,11 @@
 				output += "<div class='location'><img src='static/img/location.png/'>" + data[i].location + "</div>";
 				output += "<div class='time'><img src='static/img/time.png/'>" + data[i].created_at + "</div>";
 				// output += "<hr><div class='description'>" + data[i].description + "</div>";
-				output += "<a class='buttonBottomSubmerged'>Read More</a>"
+				output += "<a class='buttonBottomSubmerged' id='" + i + "'>Read More</a>"
 				output += "</div>";
 				$("#preview_cards").append(output);
 				$(".buttonBottomSubmerged").click(function() {
-					mainCardContent(i);
+					mainCardContent(this.id);
 				})
 			}
 			mainCardContent(0);
@@ -36,6 +35,7 @@ function mainCardContent(val) {
 		output += "<div class='location'><img src='static/img/location.png/'>" + data[val].location + "</div>";
 		output += "<div class='time'><img src='static/img/time.png/'>" + data[val].created_at + "</div>";
 		output += "<hr><div class='description'>" + data[val].description + "</div>";
+		output += "<a class='buttonBottomSubmerged' id='" + val + "'>Apply Now</a>"
 		// output += "<a class='button'>Read More</a>"
 		output += "</div>";
 		$("#content").html(output);

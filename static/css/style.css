@@ -7,10 +7,10 @@ html {
 }
 
 body {
-    width: 100vw;
+    width: 100%;
 	margin: 0px;
     padding: 0px;
-    padding-bottom: 150px;
+    padding-bottom: 60px;
 }
 
 p {
@@ -94,7 +94,7 @@ nav ul a:hover {
 
 #container {
     width: 90%;
-	margin-top: 150px;
+	margin-top: 120px;
     padding: 25px 5%;
     float: left;
 }
@@ -106,7 +106,7 @@ nav ul a:hover {
 
 #preview_cards {
 	margin-left: 150px;
-	width: 320px;
+	width: 325px;
 	float: left;
 }
 
@@ -121,7 +121,7 @@ nav ul a:hover {
     width: 100%;
     margin-bottom: 40px;
     padding: 25px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.5);
+    /* box-shadow: 0px 5px 10px rgba(0,0,0,0.5); */
     border-radius: 5px;
 }
 
@@ -199,13 +199,13 @@ nav ul a:hover {
 }
 
 .buttonBottomSubmerged {
-	margin-top: 15px;
+	margin-top: 20px;
 	margin-bottom: -25px;
 	margin-left: -25px;
     padding: 15px 25px;
 	display: block;
 	width: 100%;
-    background-color: #ed3d51;
+    background-color: silver;
     outline: none;
     border: none;
 	border-radius: 0px 0px 5px 5px;
@@ -217,8 +217,24 @@ nav ul a:hover {
 	transition: ease 0.2s;
 }
 
+.buttonBottomSubmerged:hover {
+	background-color: #ed3d51;
+}
+
 #closeBoxImg {
 	display: inline;
 	width: 18px;
 	cursor: pointer;
+}
+
+#preview_cards h1 {
+	padding-left: 30px;
+	padding-bottom: 10px;
+	font-family: 'Merriweather';
+}
+
+#recog {
+	padding-bottom: 0px;
+	text-align: center;
+    color: #565656;
 }
