@@ -11,14 +11,11 @@
 				output += "<div class='company'><img src='static/img/company.png/'>" + data[i].company + "</div>";
 				output += "<div class='location'><img src='static/img/location.png/'>" + data[i].location + "</div>";
 				output += "<div class='time'><img src='static/img/time.png/'>" + data[i].created_at + "</div>";
-				// output += "<hr><div class='description'>" + data[i].description + "</div>";
 				output += "<a class='buttonBottomSubmerged'>Read More</a>"
 				output += "</div>";
 				$("#preview_cards").append(output);
-				$(".jobtitle").click(function() {
-					mainCardContent($(this).parent().attr('id'));
-				})
-				$(".buttonBottomSubmerged").click(function() {
+
+				$(".buttonBottomSubmerged, .jobtitle").click(function() {
 					mainCardContent($(this).parent().attr('id'));
 				})
 			}
@@ -48,12 +45,14 @@ function mainCardContent(val) {
 		$(".applyBtn").click(function() {
 			$("#applyCard").show();
 			var job_id = data[val].id;
+			var job_title = data[val].title;
+			$('input[name$=job_title]').val(job_title);
 			$('input[name$=position_id]').val(job_id);
 			window.scrollTo(0,0);
 		})
 
 		$(".closeBoxApply").click(function() {
-			$("#applyCard").hide()
+			$("#applyCard").hide();
 		})
 	})
 }

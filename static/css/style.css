@@ -28,6 +28,10 @@ hr {
 	border: 1px solid #cdcdcd;
 }
 
+h1 {
+	font-weight: normal;
+}
+
 
 /* ======== NAVIGATION BAR / LOGO ======== */
 
@@ -105,7 +109,7 @@ nav ul a:hover {
 }
 
 #preview_cards {
-	margin-left: 150px;
+	margin-left: 180px;
 	width: 325px;
 	float: left;
 }
@@ -121,7 +125,7 @@ nav ul a:hover {
     width: 100%;
     margin-bottom: 40px;
     padding: 25px;
-    /* box-shadow: 0px 5px 10px rgba(0,0,0,0.5); */
+    box-shadow: 0px 0px 20px silver;
     border-radius: 5px;
 }
 
@@ -256,12 +260,13 @@ nav ul a:hover {
 	margin-left: -25px;
 }
 
-#content form input[type='text']:nth-of-type(odd) {
+#content form input[type='text']:nth-of-type(even) {
 	margin-right: 5px;
 }
 
-#content form input[type='text']:nth-last-of-type(2) {
-	width: 430px;
+#content form input[type='text']:nth-last-of-type(2),
+#content form input[type='text']:nth-of-type(1) {
+	width: 429px;
 }
 
 form h1 {
