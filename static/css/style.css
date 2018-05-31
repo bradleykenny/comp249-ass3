@@ -157,11 +157,11 @@ nav ul a:hover {
 }
 
 .card .button {
-    margin-top: 15px;
+    margin-top: -35px;
     padding: 10px 7px;
 	display: block;
 	width: 100px;
-    background-color: #ed3d51;
+    background-color: silver;
     outline: none;
     border: none;
 	border-radius: 3px;
@@ -171,11 +171,11 @@ nav ul a:hover {
     cursor: pointer;
 	text-transform: uppercase;
 	transition: ease 0.2s;
+	float: right;
 }
 
 .card .button:hover {
-	color: #fff;
-	box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+	background-color: #ed3d51;
 }
 
 .company img, .location img, .time img, .user img {
@@ -193,7 +193,7 @@ nav ul a:hover {
 	margin: 10px auto 15px;
 }
 
-.closeBox {
+.closeBox, .closeBoxApply {
 	float: right;
 	display: inline;
 }
@@ -237,4 +237,40 @@ nav ul a:hover {
 	padding-bottom: 0px;
 	text-align: center;
     color: #565656;
+}
+
+#content form input[type='text'] {
+	padding: 12px 10px;
+	background-color: rgba(0,0,0,0.1);
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	font-size: 14px;
+	width: 200px;
+	margin-right: px;
+	margin-bottom: 10px;
+}
+
+#content form .buttonBottomSubmerged {
+	width: 500px;
+	margin-left: -25px;
+}
+
+#content form input[type='text']:nth-of-type(odd) {
+	margin-right: 5px;
+}
+
+#content form input[type='text']:nth-last-of-type(2) {
+	width: 430px;
+}
+
+form h1 {
+	margin-top: 5px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	font-family: 'Merriweather';
+}
+
+#applyCard {
+	display: none;
 }
