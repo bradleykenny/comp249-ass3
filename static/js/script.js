@@ -94,17 +94,3 @@ function applyCardContent(val) {
 	output += "<input type='text'/>";
 	output += "</div>";
 }
-
-
-
-
-
-// creates and adds to a string that outputs html into the cards
-// var output = "<div class='card' id='" + i + "'>"
-// output += "<div class='jobtitle'>" + data[i].title + "</div>";
-// output += "<div class='company'><img src='static/img/company.png/'>" + data[i].company + "</div>";
-// output += "<div class='location'><img src='static/img/location.png/'>" + data[i].location + "</div>";
-// output += "<div class='time'><img src='static/img/time.png/'>" + data[i].created_at + "</div>";
-// // output += "<a class='buttonBottomSubmerged'>Read More</a>"
-// output += "</div>";
-//
