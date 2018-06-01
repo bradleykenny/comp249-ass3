@@ -5,12 +5,6 @@
     <title>Welcome to Job|Board</title>
 	<link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Merriweather|Pacifico" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/style.css">
-
-	<!-- load javascript libraries -->
-	<script src="/static/js/jquery-3.3.1.min.js"></script>
-	<script src="/static/js/handlebars.min.js"></script>
-
-	<script src="/static/js/script.js"></script>
 </head>
 <body>
 	<nav>
@@ -46,12 +40,45 @@
 				</div>
 				<div id="contentCard" class="card"></div>
 			</div>
-
-		    <!-- load project javascript -->
-		    <!-- note that you can add more modules if you wish -->
-			<script src="/static/js/content.js"></script>
 		</div>
 	</div>
 	<p id="recog"><span class="job_logo">Job | </span><span class="board_logo">Board</span> created by <b>Bradley Kenny</b>, 2018</p>
+
+
+	<!-- ===== TEMPLATES ===== -->
+
+	<template id="preview_card_template">
+		<div class='card' id='{{ id }}'>
+			<div class='jobtitle'>{{ title }}</div>
+			<div class='company'><img src='static/img/company.png/'>{{ company }}</div>
+			<div class='location'><img src='static/img/location.png/'>{{ location }}</div>
+			<div class='time'><img src='static/img/time.png/'>{{ created_at }}</div>
+			<!-- <a class='buttonBottomSubmerged'>Read More</a>" -->
+		</div>
+	</template>
+
+	<template id="main_card_template">
+		<div class='jobtitle'>{{ title }}</div>
+		<div class='closeBox'><img src='static/img/close_32.png' id='closeBoxImg'/></div>
+		<div class='company'><img src='static/img/company.png/'>{{ company }}</div>
+		{{#if company_url}}
+		<div class='location'><img src='static/img/internet.png/'><a href='{{ company_url }}'>{{ company_url }}</a></div>
+		{{/if}}
+		<div class='location'><img src='static/img/location.png/'>{{ location }}</div>
+		<div class='location'><img src='static/img/work.png/'>{{ type }}</div>
+		<div class='time'><img src='static/img/time.png/'>{{ created_at }}</div>
+		<div class='button applyBtn'>Apply</div>
+		<hr><div class='description'>{{{ description }}}</div>
+		<hr><div class='description'><b>Job ID</b>: {{ id }}</div>
+		<a class='buttonBottomSubmerged applyBtn' id='{{ id }}'>Apply Now</a>
+	</template>
+
+	<!-- load project javascript -->
+	<!-- note that you can add more modules if you wish -->
+	<!-- load javascript libraries -->
+	<script src="/static/js/jquery-3.3.1.min.js"></script>
+	<script src="/static/js/handlebars.min.js"></script>
+
+	<script src="/static/js/script.js"></script>
 </body>
 </html>

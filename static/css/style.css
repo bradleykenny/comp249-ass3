@@ -279,3 +279,7 @@ form h1 {
 #applyCard {
 	display: none;
 }
+
+#preview_cards .card {
+	cursor: pointer;
+}
