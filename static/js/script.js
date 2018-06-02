@@ -1,21 +1,18 @@
 (function(){
 
     $(document).ready(function() {
-        // $("#content").text("This text was placed here by the javascript in static/js/script.js")
 		$.getJSON('/positions', function(data) {
-			console.log(data);
+			// console.log(data);
 			var template = Handlebars.compile($("#preview_card_template").html());
 			for (var i = 0; i < 10; i++) {
-
 				var output = template(data[i]);
 				$("#preview_cards").append(output);
-
-				$("#preview_cards .card").click(function() {
-					renderCardByID($(this).attr('id'), false);
-					$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1});
-					$("nav").css({'z-index': 2})
-				})
 			}
+			$("#preview_cards .card").click(function() {
+				renderCardByID($(this).attr('id'), false);
+				$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1});
+				$("nav").css({'z-index': 2})
+			})
 			$("#searchResults").hide();
 			mainCardContent(0);
 			searchFunction();
@@ -84,7 +81,9 @@ function jobInformationCardCommon(data, val, scroll) {
 		$("#applyCard").hide();
 	})
 
-	$("#applyForm").submit(function(e) {
+	// used to not redirect to '/apply' and instead show the response on the page
+	// .submit() submitted the form multiple times? unbinding+binding seems to fix
+	$("#applyForm").unbind('submit').bind('submit',function(e) {
 		e.preventDefault();
 		$.ajax({
 			url:'/apply',
@@ -92,7 +91,7 @@ function jobInformationCardCommon(data, val, scroll) {
 			data:$('#applyForm').serialize(),
 			success:function(response){
 				$("#successBox").show();
-				$("#successBox p").text(response.message);
+				$("#successBox p").html('<b>[' + response.count + ']</b> ' + response.message + ".");
 			}
 		});
 	})
@@ -100,10 +99,11 @@ function jobInformationCardCommon(data, val, scroll) {
 
 function searchFunction() {
 	$("#searchBar").keyup(function(e){
-		var q = $("#searchBar").val().split(" ");
+		// splits the query up by spaces into an array of search terms
+		var search_terms = $("#searchBar").val().split(" ");
 		$.getJSON("/positions",
 		{
-			srsearch: q,
+			srsearch: search_terms,
 			action: "query",
 			list: "search",
 			format: "json"
@@ -111,62 +111,59 @@ function searchFunction() {
 		function(data) {
 			$("#content").css({position: "static", top:'', 'margin-left': 100+'px', 'margin-top': +0+'px', 'z-index':1 });
 			$("#searchResults").empty();
+
+			// shows what terms are being searched for
 			var resultsString = "<p>Results for ";
-			for (var i = 0; i < q.length; i++) {
+			for (var i = 0; i < search_terms.length; i++) {
 				if (i == 0){
-					resultsString += "<b>" + q[i] + "</b>";
-				} else if (i == q.length-1) {
-					resultsString += " and <b>" + q[i] + "</b>";
+					resultsString += "<b>" + search_terms[i] + "</b>";
+				} else if (i == search_terms.length-1) {
+					resultsString += " and <b>" + search_terms[i] + "</b>";
 				} else {
-					resultsString += ", <b>" + q[i] + "</b>";
+					resultsString += ", <b>" + search_terms[i] + "</b>";
 				}
 			}
+
 			$("#searchResults").append("<h1>Search Results</h1>" + resultsString + "</p>");
-			for (var j = 0; j < q.length; j++) {
-				var regex = new RegExp(q[j], "i");
+			for (var j = 0; j < search_terms.length; j++) {
+				var regex = new RegExp(search_terms[j], "i");
 				$.each(data, function(i, item){
+					// hide search functionality if there is no text in the search bar
 					if ($("#searchBar").val().length == 0) {
 						$("#searchResults").hide();
 						$("#preview_cards").show();
+						// puts job information pane back in its default position
 						$("#content").css({position: "static", top:'', 'margin-left': 100+'px', 'margin-top': +0+'px', 'z-index':1 });
 					}
-					else if (q != null && data[i].title.search(regex) != -1) {
+					// when search terms are in the box...
+					else if (search_terms != null && data[i].title.search(regex) != -1) {
 						$("#preview_cards").hide();
 						$("#searchResults").show();
 						$("#applyCard").hide();
-						var template = Handlebars.compile($("#search_results_template").html());
+						var template = Handlebars.compile($("#preview_card_template").html());
 						var output = template(item);
 
 						$("#searchResults").append(output);
-
-						$("#searchResults .card").click(function() {
-							renderCardByID($(this).attr('id'), false);
-							$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1 });
-							$("nav").css({'z-index': 2})
-						})
 					}
 				});
 			}
+
+			// enables information pane to appear next to clicked card
+			$("#searchResults .card").click(function() {
+				renderCardByID($(this).attr('id'), false);
+				$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1 });
+				$("nav").css({'z-index': 2})
+			})
 		});
   });
 }
 
+// a function that we use to manipulate whether
+// clicking on the apply takes us to top of page
 function doWeScroll(yesNo) {
 	if (yesNo == true) {
 		window.scrollTo(0,0);
 	}
-}
-
-function subForm(e){
-	e.preventDefault();
-	$.ajax({
-		url:'/apply',
-		type:'post',
-		data:$('#applyForm').serialize(),
-		success:function(){
-			alert("worked");
-		}
-	});
 }
 
 

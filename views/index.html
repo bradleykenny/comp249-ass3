@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Welcome to Job|Board</title>
 	<link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Merriweather|Pacifico" rel="stylesheet">
+	<link rel="icon" type="image/png" href="../static/img/favicon.ico">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
@@ -34,16 +35,16 @@
 						<p>This is a box</p>
 						<img src='static/img/close_32.png'/>
 					</div>
-				    <form action="/apply" method="POST" id="applyForm">
+				    <form id="applyForm">
 						<div class='closeBoxApply'><img src='static/img/close_32.png' id='closeBoxImg'/></div>
 						<h1>Apply</h1>
-						<input name="job_title" placeholder="Job Title" type="text" readonly="readonly">
-				        <input name="first_name" placeholder="First Name" type="text">
-				        <input name="last_name" placeholder="Last Name" type="text">
-				        <input name="position_id" placeholder="Position ID" type="text" readonly="readonly">
-				        <input name="years_experience" placeholder="Years Experience" type="text">
-				        <input name="expertise" placeholder="Expertise" type="text">
-				        <input type="submit" class="buttonBottomSubmerged" id="applySubmit">
+						<input name="job_title" placeholder="Job Title" type="text" readonly="readonly"/>
+				        <input name="first_name" placeholder="First Name" type="text"/>
+				        <input name="last_name" placeholder="Last Name" type="text"/>
+				        <input name="position_id" placeholder="Position ID" type="text" readonly="readonly"/>
+				        <input name="years_experience" placeholder="Years Experience" type="text"/>
+				        <input name="expertise" placeholder="Expertise" type="text"/>
+				        <input type="submit" class="buttonBottomSubmerged" id="applySubmit"/>
 				    </form>
 				</div>
 				<div id="contentCard" class="card"></div>
@@ -84,15 +85,6 @@
 		<!-- <a class='buttonBottomSubmerged applyBtn' id='{{ id }}'>Apply Now</a> -->
 	</template>
 
-	<template id="search_results_template">
-		<div class='card' id='{{ id }}'>
-			<div class='jobtitle'>{{ title }}</div>
-			<div class='company'><img src='static/img/company.png/'>{{ company }}</div>
-			<div class='location'><img src='static/img/location.png/'>{{ location }}</div>
-			<div class='time'><img src='static/img/time.png/'>{{ created_at }}</div>
-			<!-- <a class='buttonBottomSubmerged'>Read More</a>" -->
-		</div>
-	</template>
 
 	<!-- load project javascript -->
 	<!-- note that you can add more modules if you wish -->
