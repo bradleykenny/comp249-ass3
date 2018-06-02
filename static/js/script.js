@@ -85,7 +85,6 @@ function jobInformationCardCommon(data, val, scroll) {
 function searchFunction() {
 	$("#searchBar").keyup(function(e){
 		var q = $("#searchBar").val().split(" ");
-		console.log(q);
 		$.getJSON("/positions",
 		{
 			srsearch: q,
@@ -105,12 +104,10 @@ function searchFunction() {
 					resultsString += ", <b>" + q[i] + "</b>";
 				}
 			}
-			console.log("<h1>Search Results</h1>" + resultsString + "</p>");
 			$("#searchResults").append("<h1>Search Results</h1>" + resultsString + "</p>");
 			for (var j = 0; j < q.length; j++) {
 				var regex = new RegExp(q[j], "i");
 				$.each(data, function(i, item){
-					console.log(q[j])
 					if ($("#searchBar").val().length == 0) {
 						$("#searchResults").hide();
 						$("#preview_cards").show();
