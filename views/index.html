@@ -18,9 +18,13 @@
 			<a href="/positions">Positions</a>
 		    <a href="/applications">Applications</a>
 	    </ul>
+		<input id="searchBar" type="text" placeholder="Search..."/>
 	</nav>
 	<div id="container">
 		<div id="centerer">
+			<div id="searchResults">
+				<h1>Search Results</h1>
+			</div>
 		    <div id="preview_cards">
 				<h1>Available Jobs</h1>
 			</div>
@@ -74,6 +78,16 @@
 		<hr>
 		<div class='description'><b>Job ID</b>: {{ id }}</div>
 		<a class='buttonBottomSubmerged applyBtn' id='{{ id }}'>Apply Now</a>
+	</template>
+
+	<template id="search_results_template">
+		<div class='card' id='{{ id }}'>
+			<div class='jobtitle'>{{ title }}</div>
+			<div class='company'><img src='static/img/company.png/'>{{ company }}</div>
+			<div class='location'><img src='static/img/location.png/'>{{ location }}</div>
+			<div class='time'><img src='static/img/time.png/'>{{ created_at }}</div>
+			<!-- <a class='buttonBottomSubmerged'>Read More</a>" -->
+		</div>
 	</template>
 
 	<!-- load project javascript -->

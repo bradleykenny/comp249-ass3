@@ -12,13 +12,15 @@
 
 				// TODO: CHOOSE ONE METHOD
 				$(".buttonBottomSubmerged, .jobtitle").click(function() {
-					renderCardByID($(this).parent().attr('id'));
+					renderCardByID($(this).parent().attr('id'), true);
 				})
 				$("#preview_cards .card").click(function() {
-					renderCardByID($(this).attr('id'));
+					renderCardByID($(this).attr('id'), true);
 				})
 			}
+			$("#searchResults").hide();
 			mainCardContent(0);
+			searchFunction();
     	})
 	})
 })()
@@ -33,12 +35,12 @@ function mainCardContent(val) {
 
 		$("#contentCard").html(output);
 
-		jobInformationCardCommon(data, val);
+		jobInformationCardCommon(data, val, true);
 	})
 }
 
 // use this function when trying to load the job information card with the job_id
-function renderCardByID(id_val) {
+function renderCardByID(id_val, scroll) {
 	$.getJSON('/positions', function(data) {
 		var val = 0;
 		for (var i = 0; i < data.length; i++) {
@@ -54,11 +56,11 @@ function renderCardByID(id_val) {
 
 		$("#contentCard").html(output);
 
-		jobInformationCardCommon(data, val);
+		jobInformationCardCommon(data, val, scroll);
 	})
 }
 
-function jobInformationCardCommon(data, val) {
+function jobInformationCardCommon(data, val, scroll) {
 	// closes the job information box on the right when clicking on the cross
 	$(".closeBox").click(function() {
 		$("#contentCard").hide();
@@ -71,7 +73,7 @@ function jobInformationCardCommon(data, val) {
 		var job_title = data[val].title;
 		$('input[name$=job_title]').val(job_title);
 		$('input[name$=position_id]').val(job_id);
-		window.scrollTo(0,0);
+		doWeScroll(scroll);
 	})
 
 	// closes the "Apply" form when clicking the cross inside the form
@@ -79,6 +81,56 @@ function jobInformationCardCommon(data, val) {
 		$("#applyCard").hide();
 	})
 }
+
+function searchFunction() {
+	$("#searchBar").keyup(function(e){
+		var q = $("#searchBar").val();
+		$.getJSON("/positions",
+		{
+			srsearch: q,
+			action: "query",
+			list: "search",
+			format: "json"
+		},
+		function(data) {
+			var regex = new RegExp(q, "i");
+			$("#searchResults").empty();
+			$("#searchResults").append("<h1>Search Results</h1><p>Results for <b>" + q + "</b></p>");
+			$.each(data, function(i, item){
+				if ($("#searchBar").val().length == 0) {
+					console.log("HERE");
+					$("#searchResults").hide();
+					$("#preview_cards").show();
+					$("#content").css({position: "static", top:'', 'margin-left': 100+'px', 'margin-top': +0+'px', 'z-index':1 });
+				}
+				else if (q != null && data[i].title.search(regex) != -1) {
+					$("#preview_cards").hide();
+					$("#searchResults").show();
+					$("#applyCard").hide();
+					var template = Handlebars.compile($("#search_results_template").html());
+					var output = template(item);
+
+					$("#searchResults").append(output);
+
+					$("#searchResults .card").click(function() {
+						renderCardByID($(this).attr('id'), false);
+						$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1 });
+						$("nav").css({'z-index': 2})
+					})
+				}
+			});
+		});
+  });
+}
+
+function doWeScroll(yesNo) {
+	if (yesNo == true) {
+		window.scrollTo(0,0);
+	}
+}
+
+
+// ===== HANDLEBARS HELPER FUNCTIONS =====
 
 Handlebars.registerHelper('splitURL', function(url) {
 	var split_url = url.split("//");
