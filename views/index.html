@@ -13,10 +13,9 @@
 	    </h1>
 	    <ul>
 	        <a href="/">Home</a>
-	        <a href="/">Jobs</a>
-	        <a href="/">About</a>
-			<a href="/positions">Positions</a>
-		    <a href="/applications">Applications</a>
+	        <a href="#">Jobs</a>
+	        <a href="#">About</a>
+			<a href="#">Your Applications</a>
 	    </ul>
 		<input id="searchBar" type="text" placeholder="Search..."/>
 	</nav>
@@ -29,8 +28,13 @@
 				<h1>Available Jobs</h1>
 			</div>
 			<div id="content">
+
 				<div class="card" id="applyCard">
-				    <form action="/apply" method="POST">
+					<div id="successBox">
+						<p>This is a box</p>
+						<img src='static/img/close_32.png'/>
+					</div>
+				    <form action="/apply" method="POST" id="applyForm">
 						<div class='closeBoxApply'><img src='static/img/close_32.png' id='closeBoxImg'/></div>
 						<h1>Apply</h1>
 						<input name="job_title" placeholder="Job Title" type="text" readonly="readonly">
@@ -39,7 +43,7 @@
 				        <input name="position_id" placeholder="Position ID" type="text" readonly="readonly">
 				        <input name="years_experience" placeholder="Years Experience" type="text">
 				        <input name="expertise" placeholder="Expertise" type="text">
-				        <input type="submit" class="buttonBottomSubmerged">
+				        <input type="submit" class="buttonBottomSubmerged" id="applySubmit">
 				    </form>
 				</div>
 				<div id="contentCard" class="card"></div>
@@ -77,7 +81,7 @@
 		<div class='description'>{{{ description }}}</div>
 		<hr>
 		<div class='description'><b>Job ID</b>: {{ id }}</div>
-		<a class='buttonBottomSubmerged applyBtn' id='{{ id }}'>Apply Now</a>
+		<!-- <a class='buttonBottomSubmerged applyBtn' id='{{ id }}'>Apply Now</a> -->
 	</template>
 
 	<template id="search_results_template">

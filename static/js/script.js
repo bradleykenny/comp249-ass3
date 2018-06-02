@@ -10,12 +10,10 @@
 				var output = template(data[i]);
 				$("#preview_cards").append(output);
 
-				// TODO: CHOOSE ONE METHOD
-				$(".buttonBottomSubmerged, .jobtitle").click(function() {
-					renderCardByID($(this).parent().attr('id'), true);
-				})
 				$("#preview_cards .card").click(function() {
-					renderCardByID($(this).attr('id'), true);
+					renderCardByID($(this).attr('id'), false);
+					$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1});
+					$("nav").css({'z-index': 2})
 				})
 			}
 			$("#searchResults").hide();
@@ -65,6 +63,11 @@ function jobInformationCardCommon(data, val, scroll) {
 	$(".closeBox").click(function() {
 		$("#contentCard").hide();
 	})
+	$("#applyCard").hide();
+	$("#successBox").hide();
+	$("#successBox img").click(function() {
+		$("#successBox").hide();
+	})
 
 	// displays the "Apply" form when clicking on an "Apply" button
 	$(".applyBtn").click(function() {
@@ -80,6 +83,19 @@ function jobInformationCardCommon(data, val, scroll) {
 	$(".closeBoxApply").click(function() {
 		$("#applyCard").hide();
 	})
+
+	$("#applyForm").submit(function(e) {
+		e.preventDefault();
+		$.ajax({
+			url:'/apply',
+			type:'post',
+			data:$('#applyForm').serialize(),
+			success:function(response){
+				$("#successBox").show();
+				$("#successBox p").text(response.message);
+			}
+		});
+	})
 }
 
 function searchFunction() {
@@ -93,6 +109,7 @@ function searchFunction() {
 			format: "json"
 		},
 		function(data) {
+			$("#content").css({position: "static", top:'', 'margin-left': 100+'px', 'margin-top': +0+'px', 'z-index':1 });
 			$("#searchResults").empty();
 			var resultsString = "<p>Results for ";
 			for (var i = 0; i < q.length; i++) {
@@ -138,6 +155,18 @@ function doWeScroll(yesNo) {
 	if (yesNo == true) {
 		window.scrollTo(0,0);
 	}
+}
+
+function subForm(e){
+	e.preventDefault();
+	$.ajax({
+		url:'/apply',
+		type:'post',
+		data:$('#applyForm').serialize(),
+		success:function(){
+			alert("worked");
+		}
+	});
 }
 
 
