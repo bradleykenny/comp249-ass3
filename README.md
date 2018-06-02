@@ -1,4 +1,5 @@
-# COMP249 Assignment 3 -- Bradley Kenny [SID: 45209723]
+# COMP249 Assignment 3
+# Bradley Kenny [SID: 45209723]
 
 ### Main Features
 - When opening the page, users are presented with the ten most recent job postings.
