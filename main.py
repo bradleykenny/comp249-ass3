@@ -49,7 +49,7 @@ def index():
 	# to the response
 	# then we restore the global response object
 	# and finally return the one we've made with the cookie set
-	#
+
 	global response
 
 	global_response = response
