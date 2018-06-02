@@ -137,16 +137,13 @@ nav ul a:hover {
 	display: inline-block;
 }
 
-.jobtitle:hover {
-	color: #ba3040;
-}
-
 .company {
     font-weight: bold;
 }
 
-.company img, .location img, .time img, .user img {
-    margin-right: 3px;
+.company img, .location img, .time img, .user img, .company_url img, .work_type img {
+	margin-left: 3px;
+    margin-right: 8px;
     margin-top: 5px;
     height: 12px;
 }
@@ -182,12 +179,6 @@ nav ul a:hover {
 	background-color: #ed3d51;
 }
 
-.company img, .location img, .time img, .user img {
-	margin-left: 3px;
-	margin-right: 8px;
-    margin-top: 5px;
-    height: 12px;
-}
 
 .card p {
 	margin: 10px auto;
@@ -282,4 +273,10 @@ form h1 {
 
 #preview_cards .card {
 	cursor: pointer;
+}
+
+.companyLogo {
+	margin: 20px auto;
+	display: block;
+	height: 80px;
 }

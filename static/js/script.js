@@ -23,6 +23,7 @@
 	})
 })()
 
+// use this function when trying to load the job information card using the array index
 function mainCardContent(val) {
 	$.getJSON('/positions', function(data) {
 		$("#contentCard").show();
@@ -32,65 +33,54 @@ function mainCardContent(val) {
 
 		$("#contentCard").html(output);
 
-		$(".closeBox").click(function() {
-			$("#contentCard").hide();
-		})
-
-		$(".applyBtn").click(function() {
-			$("#applyCard").show();
-			var job_id = data[val].id;
-			var job_title = data[val].title;
-			$('input[name$=job_title]').val(job_title);
-			$('input[name$=position_id]').val(job_id);
-			window.scrollTo(0,0);
-		})
-
-		$(".closeBoxApply").click(function() {
-			$("#applyCard").hide();
-		})
+		jobInformationCardCommon(data, val);
 	})
 }
 
+// use this function when trying to load the job information card with the job_id
 function renderCardByID(id_val) {
 	$.getJSON('/positions', function(data) {
-		var ref = 0;
-		console.log(id_val);
-		console.log(data[0].id);
+		var val = 0;
 		for (var i = 0; i < data.length; i++) {
 			if (data[i].id === id_val) {
-				ref = i;
-				console.log("HERE");
+				val = i;
 				break;
 			}
 		}
 		$("#contentCard").show();
 
 		var template = Handlebars.compile($("#main_card_template").html());
-		var output = template(data[ref]);
+		var output = template(data[val]);
 
 		$("#contentCard").html(output);
 
-		$(".closeBox").click(function() {
-			$("#contentCard").hide();
-		})
-
-		$(".applyBtn").click(function() {
-			$("#applyCard").show();
-			var job_id = data[ref].id;
-			var job_title = data[ref].title;
-			$('input[name$=job_title]').val(job_title);
-			$('input[name$=position_id]').val(job_id);
-			window.scrollTo(0,0);
-		})
-
-		$(".closeBoxApply").click(function() {
-			$("#applyCard").hide();
-		})
+		jobInformationCardCommon(data, val);
 	})
 }
 
-function applyCardContent(val) {
-	var output = "<div class='card' id='contentCard'>";
-	output += "<input type='text'/>";
-	output += "</div>";
+function jobInformationCardCommon(data, val) {
+	// closes the job information box on the right when clicking on the cross
+	$(".closeBox").click(function() {
+		$("#contentCard").hide();
+	})
+
+	// displays the "Apply" form when clicking on an "Apply" button
+	$(".applyBtn").click(function() {
+		$("#applyCard").show();
+		var job_id = data[val].id;
+		var job_title = data[val].title;
+		$('input[name$=job_title]').val(job_title);
+		$('input[name$=position_id]').val(job_id);
+		window.scrollTo(0,0);
+	})
+
+	// closes the "Apply" form when clicking the cross inside the form
+	$(".closeBoxApply").click(function() {
+		$("#applyCard").hide();
+	})
 }
+
+Handlebars.registerHelper('splitURL', function(url) {
+	var split_url = url.split("//");
+	return split_url[1];
+});
