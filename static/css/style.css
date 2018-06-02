@@ -229,7 +229,8 @@ nav ul a:hover {
 }
 
 #recog {
-	padding-bottom: 0px;
+	bottom: 0;
+	width: 100%;
 	text-align: center;
     color: #565656;
 }
@@ -298,8 +299,13 @@ form h1 {
 	float: left;
 }
 
+#searchResults h1 {
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
 #searchResults p {
 	margin-top: -35px;
 	margin-bottom: 30px;
 	margin-left: 30px;
+	display: inline-block;
 }

@@ -84,7 +84,8 @@ function jobInformationCardCommon(data, val, scroll) {
 
 function searchFunction() {
 	$("#searchBar").keyup(function(e){
-		var q = $("#searchBar").val();
+		var q = $("#searchBar").val().split(" ");
+		console.log(q);
 		$.getJSON("/positions",
 		{
 			srsearch: q,
@@ -93,32 +94,45 @@ function searchFunction() {
 			format: "json"
 		},
 		function(data) {
-			var regex = new RegExp(q, "i");
 			$("#searchResults").empty();
-			$("#searchResults").append("<h1>Search Results</h1><p>Results for <b>" + q + "</b></p>");
-			$.each(data, function(i, item){
-				if ($("#searchBar").val().length == 0) {
-					console.log("HERE");
-					$("#searchResults").hide();
-					$("#preview_cards").show();
-					$("#content").css({position: "static", top:'', 'margin-left': 100+'px', 'margin-top': +0+'px', 'z-index':1 });
+			var resultsString = "<p>Results for ";
+			for (var i = 0; i < q.length; i++) {
+				if (i == 0){
+					resultsString += "<b>" + q[i] + "</b>";
+				} else if (i == q.length-1) {
+					resultsString += " and <b>" + q[i] + "</b>";
+				} else {
+					resultsString += ", <b>" + q[i] + "</b>";
 				}
-				else if (q != null && data[i].title.search(regex) != -1) {
-					$("#preview_cards").hide();
-					$("#searchResults").show();
-					$("#applyCard").hide();
-					var template = Handlebars.compile($("#search_results_template").html());
-					var output = template(item);
+			}
+			console.log("<h1>Search Results</h1>" + resultsString + "</p>");
+			$("#searchResults").append("<h1>Search Results</h1>" + resultsString + "</p>");
+			for (var j = 0; j < q.length; j++) {
+				var regex = new RegExp(q[j], "i");
+				$.each(data, function(i, item){
+					console.log(q[j])
+					if ($("#searchBar").val().length == 0) {
+						$("#searchResults").hide();
+						$("#preview_cards").show();
+						$("#content").css({position: "static", top:'', 'margin-left': 100+'px', 'margin-top': +0+'px', 'z-index':1 });
+					}
+					else if (q != null && data[i].title.search(regex) != -1) {
+						$("#preview_cards").hide();
+						$("#searchResults").show();
+						$("#applyCard").hide();
+						var template = Handlebars.compile($("#search_results_template").html());
+						var output = template(item);
 
-					$("#searchResults").append(output);
+						$("#searchResults").append(output);
 
-					$("#searchResults .card").click(function() {
-						renderCardByID($(this).attr('id'), false);
-						$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1 });
-						$("nav").css({'z-index': 2})
-					})
-				}
-			});
+						$("#searchResults .card").click(function() {
+							renderCardByID($(this).attr('id'), false);
+							$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+200+'px', 'z-index':1 });
+							$("nav").css({'z-index': 2})
+						})
+					}
+				});
+			}
 		});
   });
 }
