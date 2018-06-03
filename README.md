@@ -10,6 +10,9 @@
 - Users can use the search box in the navigation bar to search for jobs. Any spaces in the search box act as an 'or' operator. Therefore, the search term "software technical" will search for any job titles with the words "software" OR "technical".
 
 ### Extra Features
-- search appears as you type.
-- when searching, clicking on a card makes it appear next to the search. when exiting 'search mode', the card moves back to the top with the rest of the content.
-- apply card ID and job title auto fill depending on what card you click
+- Search results appear as you type. When there are search terms in the box, the search results begin appearing on the page and hide the '10 latest' results that were showing before. To help when dealing with searches with lots of results, clicking the cards makes the 'information card' appear next to where to clicked so that users don't have to scroll up all the time. Removing all terms from the box reverts back to the default 10 results and the 'information card' is placed back up the top.
+- When applying for a job, clicking the apply button automatically prefills some information in the form. This will help users so that they don't have to go searching for the ID, or mistyping it. This apply form will hide when clicking on other jobs so that users don't get confused and start trying to apply for the wrong job.
+
+### Notes
+- The links at the top of the page are placeholders only.
+- Had a 'recognition' text box at the bottom but removed because clicking on cards below the existing page space moves the 'information card' outside the container so the text box was misplaced.
