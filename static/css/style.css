@@ -1,3 +1,8 @@
+/* ===== COMP249: ASSIGNMENT 3 ===== */
+
+/* ===== BRADLEY KENNY ===== */
+/* ===== SID: 45209723 ===== */
+
 
 /* ======== COMMON ELEMENTS ======== */
 
@@ -228,13 +233,6 @@ nav ul a:hover {
 	font-family: 'Merriweather';
 }
 
-#recog {
-	bottom: 0;
-	width: 100%;
-	text-align: center;
-    color: #565656;
-}
-
 #content form input[type='text'] {
 	padding: 12px 10px;
 	background-color: rgba(0,0,0,0.1);
@@ -282,6 +280,8 @@ form h1 {
 	height: 80px;
 }
 
+/* ======== SEARCH BAR ======== */
+
 #searchBar {
 	float: right;
 	outline: none;
@@ -314,6 +314,8 @@ form h1 {
 	background-color: silver;
 	border-radius: 5px;
 }
+
+/* ======== SUCCESS BOX FOF APPLY CARD ======== */
 
 #successBox {
 	padding: 10px 25px;

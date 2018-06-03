@@ -15,6 +15,7 @@
 				renderCardByID($(this).attr('id'), false);
 				$("#content").css({position: "absolute", top:event.pageY, 'margin-left': 600+'px', 'margin-top': '-'+100+'px', 'z-index':1});
 				$("nav").css({'z-index': 2}) // makes sure nav stays above the right card
+				$("#recog").css({"bottom": 0});
 			})
 			$("#searchResults").hide();
 			mainCardContent(0); // on initial load, shows details for latest job available
