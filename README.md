@@ -16,3 +16,5 @@
 ### Notes
 - The links at the top of the page are placeholders only.
 - Had a 'recognition' text box at the bottom but removed because clicking on cards below the existing page space moves the 'information card' outside the container so the text box was misplaced.
+- Created favicon for the site, too.
+- All icons are free for commercial use as long as we reference the creators site: http://www.danilodemarco.com/. Did this in the comments of HTML.
