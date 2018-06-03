@@ -342,3 +342,13 @@ form h1 {
 	cursor: pointer;
 	opacity: 0.3;
 }
+
+
+/* ======== RECOGNITION BOX:DISABLED ======== */
+
+#recog {
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	color: #565656;
+}
